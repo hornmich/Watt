@@ -9,14 +9,10 @@
 <body>
 	<h1>System pro zaznam pracovnich cinnosti</h1>
 	<h2>Vyberte akci:</h2>
-	<form name="actionform" action="selectname.php" method="POST">
-		<hr>
-		<input type="radio" name="group1" value="Add" checked> Pridat zaznam<br>
-		<input type="radio" name="group1" value="Show"> Zobrazit zaznamy<br>
-		<input type="radio" name="group1" value="Manage">Spravovat zaznamy<br>
-		<hr>
-		<input type="submit" name="submit" value="OK">
-	</form>
+	<ul>
+		<li>Pridat zaznam</li>
+		<li>Zobrazit zaznamy</li>
+		<li>Spravovat zaznamy</li>
+	</ul>
 </body>
-
 </html>
