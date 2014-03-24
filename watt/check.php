@@ -26,32 +26,46 @@
 			$advance = $_POST['advance'];
 			$allright=true;
 
-			$TIME24HOURS_PATTERN = "/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/";
+			$TIME24HOURS_PATTERN = '/([01]?[0-9]|2[0-3]):[0-5][0-9]/';
 
 			if ($name == "") {
-				echo "Jmeno nesmi byt prazdne";		
+				echo "<p>Jmeno nesmi byt prazdne</p>";		
 				$allright=false;	
 			}
 			if ($place == "") {
-				echo "Misto nesmi byt prazdne";			
+				echo "<p>Misto nesmi byt prazdne</p>";			
 				$allright=false;	
 			}
 			if ($work == "") {
-				echo "Popis prace nesmi byt prazdny";			
+				echo "<p>Popis prace nesmi byt prazdny</p>";			
 				$allright=false;	
 			}
-			if (!preg_match($TIME24HOURS_PATTERN, $start)) {
-				echo "Cas zacatku je spatne zadany. Musi byt ve formatu hh:mm .";			
+			if (preg_match($TIME24HOURS_PATTERN, $start) === 0) {
+				echo "<p>Cas zacatku je spatne zadany. Musi byt ve formatu hh:mm .</p>";			
 				$allright=false;	
 			}
-			if (!preg_match($TIME24HOURS_PATTERN, $end)) {
-				echo "Cas zacatku je spatne zadany. Musi byt ve formatu hh:mm .";			
+			else if (preg_match($TIME24HOURS_PATTERN, $start) === FALSE) {
+				echo "<p>Chyba v regexp u start time.</p>";
+				$allright=false;				
+			}
+			if (preg_match($TIME24HOURS_PATTERN, $end) == 0) {
+				echo "<p>Cas konce je spatne zadany. Musi byt ve formatu hh:mm .</p>";			
 				$allright=false;	
 			}
-			
+			else if (preg_match($TIME24HOURS_PATTERN, $end) === FALSE) {
+				echo "<p>Chyba v regexp u end time.</p>";
+				$allright=false;				
+			}			
 			if ($allright) { ?>
 				<p>Vsechno je spravne, muzete informace ulozit.</p>
 				<form name="dataform" action="save.php" method="POST">
+					<input type="hidden" name="name" value="<?php echo $name ?>"></input>
+					<input type="hidden" name="place" value="<?php echo $place ?>"></input>
+					<input type="hidden" name="work" value="<?php echo $work ?>"></input>
+					<input type="hidden" name="startTime" value="<?php echo $start ?>"></input>
+					<input type="hidden" name="endTime" value="<?php echo $end ?>"></input>
+					<input type="hidden" name="date" id="date" value="<?php echo $date ?>">
+					<input type="hidden" name="advance" value="<?php echo $advance ?>"></input>
 					<input type="submit" name="submit" value="Ulozit">
 				</form>
 			<?php }
@@ -59,7 +73,8 @@
 				<p>Je chyba v zadani, kteou musite opravit.</p>
 				<h1>Zadejte udaje</h1>
 				<form name="dataform" action="check.php" method="POST">
-					<p>Jmeno: <input type="text" name="name" value="<?php echo $name ?>"></input> </p>					<p>Misto (adresa): <input type="text" name="place" value="<?php echo $place ?>"></input> </p>
+					<p>Jmeno: <input type="text" name="name" value="<?php echo $name ?>"></input> </p>
+					<p>Misto (adresa): <input type="text" name="place" value="<?php echo $place ?>"></input> </p>
 					<p>Ucel prace: <input type="text" name="work" value="<?php echo $work ?>"></input> </p>
 					<p>Cas zacatku: <input type="text" name="startTime" value="<?php echo $start ?>"></input> </p>
 					<p>Cas konce: <input type="text" name="endTime" value="<?php echo $end ?>"></input> </p>
