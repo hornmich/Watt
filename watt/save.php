@@ -4,12 +4,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta name="description" content="Work attendance">
    <meta name="keywords" content="HTML, tags, commands">
-   <script language="javascript" type="text/javascript" src="datetimepicker.js">
-		//Date Time Picker script- by TengYong Ng of http://www.rainforestnet.com
-		//Script featured on JavaScript Kit (http://www.javascriptkit.com)
-		//For this script, visit http://www.javascriptkit.com 
-	</script>
-   <title>Docházka</title>
+  <title>Docházka</title>
 </head>
 <body>
 
