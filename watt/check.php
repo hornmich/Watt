@@ -78,7 +78,7 @@
 					<p>Ucel prace: <input type="text" name="work" value="<?php echo $work ?>"></input> </p>
 					<p>Cas zacatku: <input type="text" name="startTime" value="<?php echo $start ?>"></input> </p>
 					<p>Cas konce: <input type="text" name="endTime" value="<?php echo $end ?>"></input> </p>
-					<p>Datum: <input type="text" name="date" id="date" value="<?php echo $date ?>"><a href="javascript:NewCal('date','ddmmyyyy')"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></p>
+					<p>Datum: <input type="text" name="date" id="date" value="<?php echo $date ?>"><a href="javascript:NewCal('date','yyyymmdd')"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></p>
 					<p>Zaloha: <input type="text" name="advance" value="<?php echo $advance ?>"></input>Kc </p>
 					<input type="submit" name="submit" value="Zkontrolovat">
 				</form>
@@ -88,8 +88,5 @@
 			echo "Tady nemate byt. jdete na index.php.";	
 		}
 	?>
-
-
-
 </body>
 </html>
