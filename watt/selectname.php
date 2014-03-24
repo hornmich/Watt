@@ -10,12 +10,20 @@
 	<?php
 	session_start();  
 	$_SESSION['state'] = 'selectName';
-	?>
-<?php 
-   echo $_POST['selectedName'];
-?>
-
-	<?php
+	$activity = $_POST['group1'];
+	$page="";
+	if ($activity == "Add") {
+		$page="input.php";
+	}
+	else if ($activity == "Show") {
+		$page="show.php";
+	}
+	else if ($activity == "Manage") {
+		$page="manage.php";
+	}
+	else {
+		echo "index.php";
+	}
 	if ($_SESSION['state'] == 'selectName') { ?>
 		<h1>Zvolte jmeno:</h1>
 		<?php require_once 'phpmysqlconnect.php';
@@ -23,7 +31,7 @@
 		$sql = 'SELECT name FROM Emploees';
 		$q = $conn->query($sql);
 		$q->setFetchMode(PDO::FETCH_ASSOC); ?>
-		<form name="myform" action="input.php" method="POST">
+		<form name="myform" action="<?php echo $page ?>" method="POST">
 			<select size="6" name="selectedName">
 			<?php while ($r = $q->fetch()): ?>
 				<option value="<?php echo htmlspecialchars($r['name']) ?>"> <?php echo htmlspecialchars($r['name']) ?> </option>
