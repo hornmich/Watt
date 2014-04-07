@@ -32,11 +32,11 @@
 		$q = $conn->query($sql);
 		$q->setFetchMode(PDO::FETCH_ASSOC); ?>
 		<form name="myform" action="<?php echo $page ?>" method="POST">
-			<select size="6" name="selectedName">
+			<p></p><select size="6" name="selectedName">
 			<?php while ($r = $q->fetch()): ?>
 				<option value="<?php echo htmlspecialchars($r['name']) ?>"> <?php echo htmlspecialchars($r['name']) ?> </option>
 			<?php endwhile; ?>
-			</select>
+			</select></p>
 			<input type="submit" name="submit" value="Další">
 		</form>
 	<?php } ?>
