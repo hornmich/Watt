@@ -12,28 +12,26 @@
     <title>Docházka</title>
 </head>
 <body>
+	<?php
+		$name = $_POST['selectedName']; 
+		$dateFrom = $_POST['dateFrom']; 
+		$dateTo = $_POST['dateTo'];
+	?>
 	<h1>System pro zaznam pracovnich cinnosti</h1>
 	<h2>Vypis udaju</h2>
 	<form name="dataform" action="show.php" method="POST">
 		<p>	Od: <input type="text" name="dateFrom" id="dateFrom"><a href="javascript:NewCal('dateFrom','yyyymmdd')"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
 			do: <input type="text" name="dateTo" id="dateTo"><a href="javascript:NewCal('dateTo','yyyymmdd')"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+			<input type="hidden" name="selectedName" value=<?php echo $name ?>>
 			<input type="submit" name="submit" value="Filtrovat">
 		</p>
 	</form>
 	<?php
-		$name = $_POST['selectedName']; 
-		$dateFrom = $_POST['dateFrom']; 
-		$dateTo = $_POST['dateTo'];
 		require_once 'phpmysqlconnect.php';
 		$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-		if ($dateFrom == "" || $dateTo == "") {
-			$sql = 'SELECT * FROM `WorkRecord`' ;
-		}
-		else {
-			$sql = 'SELECT * FROM `WorkRecord` WHERE `date` BETWEEN \''.$dateFrom.'\' AND \''.$dateTo.'\'';
-		}
-		echo $sql;
-/*		try {
+		
+		$sql = 'SELECT `id` FROM `Emploees` WHERE `name` = \''.$name.'\'';
+		try {
 			$q = $conn->query($sql);
 			if($q !== false) {
 				$cols = $q->columnCount();           // Number of returned columns
@@ -47,10 +45,31 @@
 			else {
 				echo "<p>Chyba pri pristupu do databaze.</p>";
 			}
-			$sql = 'INSERT INTO `WorkRecord`(`employee`, `workPlace`, `workType`, `date`, `startTime`, `stopTime`, `advance`) VALUES ('.$nameId.',\''.$place.'\',\''.$work.'\',\''.$date.'\',\''.$start.'\',\''.$end.'\','.$advance.')';
+			if ($dateFrom == "" || $dateTo == "") {
+				$sql = 'SELECT * FROM `WorkRecord` WHERE `employee`=\''.$nameId.'\'';
+			}
+			else {
+				$sql = 'SELECT * FROM `WorkRecord` WHERE `employee`=\''.$nameId.'\' AND (`date` BETWEEN \''.$dateFrom.'\' AND \''.$dateTo.'\')';
+			}
+
 			$q = $conn->query($sql);
-			if($q !== FALSE) {
-				echo "<p>Ulozeno.</p>";
+			if($q !== false) {
+				$cols = $q->columnCount();           // Number of returned columns
+				$q->setFetchMode(PDO::FETCH_ASSOC);
+				// pick the first ID
+				echo '<table border="1" CELLPADDING="4"><tr><th>Misto</th><th>Ucel prace</th><th>Cas zacatku</th><th>Cas konce</th><th>Datum</th><th>Zaloha</th></tr>';
+				foreach($q as $row) {
+					echo '<tr>';
+						echo '<td>'.$row['workPlace'].'</td>';
+						echo '<td>'.$row['workType'].'</td>';
+						echo '<td>'.$row['startTime'].'</td>';
+						echo '<td>'.$row['stopTime'].'</td>';
+						echo '<td>'.$row['date'].'</td>';
+						echo '<td>'.$row['advance'].'</td>';
+					echo '</tr>';
+				}
+				echo '</table>';
+
 			}
 			else {
 				echo "<p>Chyba pri pristupu do databaze.</p>";
@@ -59,9 +78,10 @@
 		catch (PDOException $e) {
   			echo $e->getMessage();
 		} 			
-
-		*/
 	?>
+	<form name="savedform" action="index.php" method="POST">
+		<input type="submit" name="submit" value="Zpet">
+	</form>
 </body>
 
 </html>
