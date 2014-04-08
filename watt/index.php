@@ -14,6 +14,7 @@
 		<input type="radio" name="group1" value="Add" checked> Pridat zaznam<br>
 		<input type="radio" name="group1" value="Show"> Zobrazit zaznamy<br>
 		<input type="radio" name="group1" value="Manage">Spravovat zaznamy<br>
+		<input type="radio" name="group1" value="Users">Spravovat uzivatele<br>
 		<hr>
 		<input type="submit" name="submit" value="OK">
 	</form>

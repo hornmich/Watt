@@ -21,6 +21,9 @@
 	else if ($activity == "Manage") {
 		$page="manage.php";
 	}
+	else if ($activity == "Users") {
+		header( "Location: usermanagement.php" );
+	}
 	else {
 		echo "index.php";
 	}
