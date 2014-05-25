@@ -27,7 +27,7 @@
 				<p>Cas zacatku: <input type="text" name="startTime" value=7.00></input> </p>
 				<p>Cas konce: <input type="text" name="endTime"></input> </p>
 				<p>Datum: <input type="text" name="date" id="date" value="<?php echo $now->format('Y-n-j'); ?>" READONLY><a href="javascript:NewCal('date','yyyymmdd')"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></p>
-				<p>Zaloha: <input type="text" name="advance"></input>Kc </p>
+				<p>Zaloha: <input type="text" name="advance" value="0"></input>Kc </p>
 				<input type="submit" name="submit" value="Zkontrolovat">
 			</form>
 		<?php }

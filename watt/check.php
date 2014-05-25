@@ -40,6 +40,13 @@
 				echo "<p>Popis prace nesmi byt prazdny</p>";			
 				$allright=false;	
 			}
+			if ($advance == "") {
+				$advance = 0;
+			}
+			if (!is_numeric($advance)) {
+				echo "<p>Zaloha musi byt cislo</p>";
+				$allright=false;
+			}
 			if (preg_match($TIME24HOURS_PATTERN, $start) === 0) {
 				echo "<p>Cas zacatku je spatne zadany. Musi byt ve formatu hh:mm .</p>";			
 				$allright=false;	
