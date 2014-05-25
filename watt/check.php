@@ -26,7 +26,7 @@
 			$advance = $_POST['advance'];
 			$allright=true;
 
-			$TIME24HOURS_PATTERN = '/([01]?[0-9]|2[0-3]):[0-5][0-9]/';
+			$TIME24HOURS_PATTERN = '/([01]?[0-9]|2[0-3])[:.][0-5][0-9]/';
 
 			if ($name == "") {
 				echo "<p>Jmeno nesmi byt prazdne</p>";		
@@ -56,7 +56,10 @@
 				echo "<p>Chyba v regexp u end time.</p>";
 				$allright=false;				
 			}			
-			if ($allright) { ?>
+			if ($allright) { 
+				$start = str_replace('.', ':', $start);
+				$end = str_replace('.', ':', $end);
+				?>
 				<p>Vsechno je spravne, muzete informace ulozit.</p>
 				<form name="dataform" action="save.php" method="POST">
 					<input type="hidden" name="name" value="<?php echo $name ?>"></input>
