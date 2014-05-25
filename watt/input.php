@@ -22,7 +22,7 @@
 			<h1>Zadejte udaje</h1>
 			<form name="dataform" action="check.php" method="POST">
 				<p>Jmeno: <input type="text" name="name" value="<?php echo $name ?>" READONLY></input> </p>
-				<p>Misto (adresa): <input type="text" name="place"></input> </p>
+				<p>Misto prace: <input type="text" name="place"></input> </p>
 				<p>Ucel prace: <input type="text" name="work"></input> </p>
 				<p>Cas zacatku: <input type="text" name="startTime" value=7.00></input> </p>
 				<p>Cas konce: <input type="text" name="endTime"></input> </p>
