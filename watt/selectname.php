@@ -25,7 +25,7 @@
 		header( "Location: usermanagement.php" );
 	}
 	else {
-		echo "index.php";
+		$page="input.php";
 	}
 	if ($_SESSION['state'] == 'selectName') { ?>
 		<h1>Zvolte jmeno:</h1>
@@ -54,5 +54,4 @@
 		</form>
 	<?php } ?>
 </body>
-
 </html>
