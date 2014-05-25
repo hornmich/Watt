@@ -12,7 +12,6 @@
 	<?php
 		require_once 'phpmysqlconnect.php';
 		$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-		
 		$sql = 'SELECT * FROM `Emploees`';
 		try {
 			$q = $conn->query($sql);
@@ -26,6 +25,12 @@
 						echo '<td>'.$row['name'].'</td>';
 						?>
 						<td>
+							<form name="dataform" action="userrename.php" method="POST">
+							<input type="hidden" name="userid" value="<?php echo $row['id'] ?>">		
+							<p>Nove jmeno: <input type="text" name="name" value="<?php echo $row['name'] ?>"></input> </p>
+							<input type="submit" name="submit" value="Prejmenovat">
+						</form>
+						<hr></hr>
 						<form name="dataform" action="userrm.php" method="POST">
 							<input type="hidden" name="userid" value="<?php echo $row['id'] ?>">
 							<input type="submit" name="submit" value="Smazat">
@@ -47,8 +52,8 @@
 	<h3>Novy uzivatel</h3>
 	<p>
 	<form name="savedform" action="useradd.php" method="POST">
-		<p>Jmeno uzivatele: <input type="text" name="username"></p>
-		<input type="submit" name="submit" value="Pridat Uzivatele">
+		<p>Jmeno noveho uzivatele: <input type="text" name="username"></p>
+		<input type="submit" name="submit" value="Pridat uzivatele">
 	</form>
 	</p>
 	<p>
