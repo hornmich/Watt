@@ -23,7 +23,7 @@
 				<p>Jmeno: <input type="text" name="name" value="<?php echo $name ?>" READONLY></input> </p>
 				<p>Misto (adresa): <input type="text" name="place"></input> </p>
 				<p>Ucel prace: <input type="text" name="work"></input> </p>
-				<p>Cas zacatku: <input type="text" name="startTime"></input> </p>
+				<p>Cas zacatku: <input type="text" name="startTime" value=7.00></input> </p>
 				<p>Cas konce: <input type="text" name="endTime"></input> </p>
 				<p>Datum: <input type="text" name="date" id="date" READONLY><a href="javascript:NewCal('date','yyyymmdd')"><img src="cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></p>
 				<p>Zaloha: <input type="text" name="advance"></input>Kc </p>
