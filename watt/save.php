@@ -49,7 +49,7 @@
 	  			echo $e->getMessage();
 			} 			
 			?>
-				<form name="savedform" action="index.php" method="POST">
+				<form name="savedform" action="selectname.php" method="POST">
 					<input type="submit" name="submit" value="OK">
 				</form>
 		<?php
