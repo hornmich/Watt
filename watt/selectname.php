@@ -30,15 +30,25 @@
 	if ($_SESSION['state'] == 'selectName') { ?>
 		<h1>Zvolte jmeno:</h1>
 		<?php require_once 'phpmysqlconnect.php';
+		$firstRecord = true;
 		$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 		$sql = 'SELECT name FROM Emploees';
 		$q = $conn->query($sql);
 		$q->setFetchMode(PDO::FETCH_ASSOC); ?>
+
 		<form name="myform" action="<?php echo $page ?>" method="POST">
 			<p></p><select size="6" name="selectedName">
-			<?php while ($r = $q->fetch()): ?>
-				<option value="<?php echo htmlspecialchars($r['name']) ?>"> <?php echo htmlspecialchars($r['name']) ?> </option>
-			<?php endwhile; ?>
+			<?php while ($r = $q->fetch()): 
+				if ($firstRecord) {?>
+					<option value="<?php echo htmlspecialchars($r['name']) ?>" selected="selected"> <?php echo htmlspecialchars($r['name']) ?> </option>
+					<?php
+					$firstRecord=false;
+				}
+				else { ?>
+					<option value="<?php echo htmlspecialchars($r['name']) ?>"> <?php echo htmlspecialchars($r['name']) ?> </option>
+				<?php
+				}
+			endwhile; ?>
 			</select></p>
 			<input type="submit" name="submit" value="Další">
 		</form>
